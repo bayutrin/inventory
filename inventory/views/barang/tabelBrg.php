@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html>
-   <head>
-         <title>Tables</title>
-         <link href="<?php echo base_url() ?>template/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-         <link href="<?php echo base_url() ?>template/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-         <link href="<?php echo base_url() ?>template/assets/styles.css" rel="stylesheet" media="screen">
-         <link href="<?php echo base_url() ?>template/assets/DT_bootstrap.css" rel="stylesheet" media="screen">
-         <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-   </head> 
+<?php
+  $this->load->view('barang/templates/headerTemplate');
+?>
    <body>
       <div class="navbar navbar-fixed-top">
          <div class="navbar-inner">
@@ -25,10 +18,10 @@
             <div class="span3" id="sidebar">
                <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                   <li>
-                     <a href="index.html"><i class="icon-chevron-right"></i> Dashboard</a>
+                     <a href="<?php echo site_url(''); ?>"><i class="icon-chevron-right"></i> Dashboard</a>
                   </li>
                   <li>
-                     <a href="<?php echo site_url('barang/tabelBrg');?>"><i class="icon-chevron-right"></i> Tabel Barang</a>
+                     <a href="<?php echo site_url('barang/tabelbrg'); ?>"><i class="icon-chevron-right"></i> Tabel Barang</a>
                   </li>
                </ul>
             </div>
