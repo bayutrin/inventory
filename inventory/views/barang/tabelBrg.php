@@ -31,7 +31,7 @@
                             <a href="index.html"><i class="icon-chevron-right"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="icon-chevron-right"></i> Tabel Barang</a>
+                            <a href="<?php echo site_url('barang/tabelBrg');?>"><i class="icon-chevron-right"></i> Tabel Barang</a>
                         </li>
                     </ul>
                 </div>
