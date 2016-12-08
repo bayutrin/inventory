@@ -62,7 +62,11 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">
                   <p class="text-center">
-                  <?php if ($barang_item['keterangan'] == 'Rusak') { ?>
+                  <?php if (($barang_item['keterangan'] == 'Rusak') && ($barang_item['pinjam'] == null)) { ?>
+                    WARNING !!!
+                  <?php } else if (($barang_item['keterangan'] == 'Rusak') && ($barang_item['pinjam'] != null)) { ?>
+                    WARNING !!!
+                  <?php } else if (($barang_item['keterangan'] == 'Baik') && ($barang_item['pinjam'] != null)) { ?>
                     WARNING !!!
                   <?php } else { ?>
                     WARNING !!!
@@ -71,9 +75,13 @@
                 </h4>
               </div>
               <div class="modal-body">
-                <?php if ($barang_item['keterangan'] == 'Rusak') { ?>
+                <?php if (($barang_item['keterangan'] == 'Rusak') && ($barang_item['pinjam'] == null)) { ?>
                   <p class="text-center">Barang dalam kondisi rusak</p>
                   <p class="text-center">Apakah anda ingin meminjam ???</p>
+                <?php } else if (($barang_item['keterangan'] == 'Rusak') && ($barang_item['pinjam'] != null)) { ?>
+                  <p class="text-center">Sudah ada yang meminjam </p>
+                <?php } else if (($barang_item['keterangan'] == 'Baik') && ($barang_item['pinjam'] != null)) { ?>
+                  <p class="text-center">Sudah ada yang meminjam </p>
                 <?php } else { ?>
                   <p class="text-center">Apakah benar anda ingin meminjam : <br/> 
                     Nama Barang : <?php echo $barang_item['nm_brg']; ?><br/> 
@@ -84,8 +92,12 @@
                 <?php } ?>
               </div>
               <div class="modal-footer">
+                <?php if ($barang_item['pinjam'] == null) { ?> 
                   <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
                   <a class="btn btn-info" href="<?php echo site_url('barang/pinjam/'.$barang_item['id']);?>" role="button">Ya</a>
+                <?php } else { ?>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+                <?php } ?>
               </div>
             </div>
           </div>
