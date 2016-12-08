@@ -24,19 +24,14 @@
                <div class="row-fluid">
                   <div class="block">
                      <div class="navbar navbar-inner block-header">
-                        <div class="muted pull-left">Tabel Barang</div>
+                        <div class="muted pull-left">Pinjam Barang</div>
                      </div>
                      <div class="block-content collapse in">
                         <div class="span12">
-                           <div class="table-toolbar">
-                              <div class="btn-group">
-                                 <a href="<?php echo site_url('barang/create');?>"><button class="btn btn-success">Tambah Barang <i class="icon-plus icon-white"></i></button></a>
-                              </div>
-                           </div>
                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example2">
                               <thead>
                                  <tr>
-                                    <th>Nama Barang - ( Jml )</th>
+                                    <th>Nama Barang</th>
                                     <th>Merk (No Seri)</th>
                                     <th>Lokasi</th>
                                     <th>Keterangan</th>
@@ -44,17 +39,62 @@
                                  </tr>
                               </thead>
                               <tbody>
-    <?php foreach ($barang as $barang_item) { ?>
-                                            <tr class="odd gradeX"> 
-        <td><?php echo $barang_item['nm_brg']; ?></td>
+                              <?php foreach ($barang as $barang_item) { ?>
+                                  <tr class="odd gradeX">
+
+        <td><?php echo $barang_item['nm_brg']; if ($barang_item['pinjam'] != null) {
+            echo "**";
+          }?></td>
         <td><?php echo $barang_item['merk']; echo " - "; echo $barang_item['no_seri']; ?></td>
         <td><?php echo $barang_item['lokasi']; ?></td>
         <td><?php echo $barang_item['keterangan']; ?></td>
-        <td><a class="btn btn-info" href="<?php echo site_url('barang/update/'.$barang_item['id']);?>" role="button">Edit</a>
-        <a class="btn btn-danger" href="<?php echo site_url('barang/delete/'.$barang_item['id']);?>" role="button">Hapus</a></td>
-                                            </tr>
-    <?php } ?>
+        <td>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?php echo $barang_item['id']; ?>">
+          Pinjam
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal<?php echo $barang_item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                  <p class="text-center">
+                  <?php if ($barang_item['keterangan'] == 'Rusak') { ?>
+                    WARNING !!!
+                  <?php } else { ?>
+                    WARNING !!!
+                  <?php } ?>
+                  </p>
+                </h4>
+              </div>
+              <div class="modal-body">
+                <?php if ($barang_item['keterangan'] == 'Rusak') { ?>
+                  <p class="text-center">Barang dalam kondisi rusak</p>
+                  <p class="text-center">Apakah anda ingin meminjam ???</p>
+                <?php } else { ?>
+                  <p class="text-center">Apakah benar anda ingin meminjam : <br/> 
+                    Nama Barang : <?php echo $barang_item['nm_brg']; ?><br/> 
+                    Merk : <?php echo $barang_item['merk']; ?><br/> 
+                    No Seri : <?php echo $barang_item['no_seri']; ?><br/> 
+                    Lokasi : <?php echo $barang_item['lokasi']; ?>
+                  </p>
+                <?php } ?>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                  <a class="btn btn-info" href="<?php echo site_url('barang/pinjam/'.$barang_item['id']);?>" role="button">Ya</a>
+              </div>
+            </div>
+          </div>
+        </div></td>
+
+                                  </tr>         
+                              <?php } ?>
                               </tbody>
+                              <p>** = ada yang meminjam</p>
                            </table>
                         </div>
                      </div>

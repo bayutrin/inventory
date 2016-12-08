@@ -16,14 +16,9 @@
       <div class="container-fluid">
          <div class="row-fluid">
             <div class="span3" id="sidebar">
-               <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-                  <li>
-                     <a href="<?php echo site_url(''); ?>"><i class="icon-chevron-right"></i> Dashboard</a>
-                  </li>
-                  <li>
-                     <a href="<?php echo site_url('barang/tabelbrg'); ?>"><i class="icon-chevron-right"></i> Tabel Barang</a>
-                  </li>
-               </ul>
+               <?php
+                  $this->load->view('barang/templates/menu');
+               ?>
             </div>
             <div class="span9" id="content">
                <div class="row-fluid">

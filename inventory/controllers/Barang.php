@@ -22,6 +22,12 @@ class Barang extends CI_Controller {
 		$this->load->view('barang/tabelbrg', $data);
 	}
 
+	public function tabelPnjm()
+	{
+		$data['barang'] = $this->barang_model->get_barang();
+		$this->load->view('barang/tabelPnjm', $data);
+	}
+
 	public function create(){
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -55,12 +61,32 @@ class Barang extends CI_Controller {
 			$this->load->view('barang/update', $data);	
 		}else{
 			$this->barang_model->update_barang($id);
-			redirect('barang');
+			redirect('barang/tabelBrg');
+		}		
+	}
+
+	public function pinjam($id){
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('pinjam','Nama Peminjam','required');
+
+		if($this->form_validation->run() === false){
+			$data['barang_item'] = $this->barang_model->get_barang_id($id);
+			$this->load->view('barang/pinjam', $data);	
+		}else{
+			$this->barang_model->update_barang_peminjam($id);
+			redirect('barang/tabelPnjm');
 		}		
 	}
 
 	public function delete($id){
 		$this->barang_model->delete_barang($id);
+		redirect('barang');
+	}
+
+	public function tabelpinjam($id){
+		$this->barang_model->pinjam_barang($id);
 		redirect('barang');
 	}
 }

@@ -44,8 +44,22 @@ class Barang_model extends CI_Model {
             $this->db->where('id', $id);
             return $this->db->update('barang', $data);
         }
+        public function update_barang_peminjam($id){
+            $this->load->helper('url');
+
+            $data = array(
+                'pinjam' => $this->input->post('pinjam')
+            );
+
+            $this->db->where('id', $id);
+            return $this->db->update('barang', $data);
+        }
 
         public function delete_barang($id){
+            return $this->db->delete('barang', array('id'=>$id));
+        }
+
+        public function pinjam_barang($id){
             return $this->db->delete('barang', array('id'=>$id));
         }
 }

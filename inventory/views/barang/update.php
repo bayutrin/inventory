@@ -6,18 +6,18 @@
 		<?php echo form_open('barang/update/'.$barang_item['id']); ?>	
 		<form class="form-horizontal">
 		  	<div class="form-group">
-		    	<label for="nm_brg" class="col-sm-2 control-label">Nama Barng</label>
+		    	<label for="nm_brg" class="col-sm-2 control-label">Nama Barang</label>
 		    	<div class="col-sm-10">
 		      	<input type="text" class="form-control" name="nm_brg" value="<?php echo $barang_item['nm_brg']; ?>">
 		    	</div>
-		  </div>
-		  <div class="form-group">
+		 	</div>
+		  	<div class="form-group">
 		    	<label for="merk" class="col-sm-2 control-label">Merk</label>
 		    	<div class="col-sm-10">
-		      <input type="text" class="form-control" name="merk" value="<?php echo $barang_item['merk']; ?>">
-		   </div>
-		  </div>
-		  <div class="form-group">
+		      	<input type="text" class="form-control" name="merk" value="<?php echo $barang_item['merk']; ?>">
+		   	</div>
+		  	</div>
+		  	<div class="form-group">
 		    	<label for="no_seri" class="col-sm-2 control-label">No Seri</label>
 		    	<div class="col-sm-10">
 		      	<input type="text" class="form-control" name="no_seri" value="<?php echo $barang_item['no_seri']; ?>">
